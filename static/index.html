@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GhostTrace | Identity Exposure Simulator</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Simulated OSINT Lab</p>
+          <h1>GhostTrace</h1>
+        </div>
+        <div class="status-pill">
+          <span class="pulse"></span>
+          Defensive simulation
+        </div>
+      </header>
+
+      <section class="workspace">
+        <aside class="controls" aria-label="Scan controls">
+          <div class="panel intro-panel">
+            <p class="section-kicker">Identity Target</p>
+            <label for="identityInput">Email or name</label>
+            <div class="search-row">
+              <input id="identityInput" type="text" value="maya.patel@example.com" autocomplete="off">
+              <button id="scanButton" type="button" class="primary-button">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M10.8 18.3a7.5 7.5 0 1 1 5.3-2.2l3.4 3.4-1.4 1.4-3.4-3.4a7.5 7.5 0 0 1-3.9.8Zm0-2a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11Z"></path>
+                </svg>
+                Scan
+              </button>
+            </div>
+            <div class="sample-row" aria-label="Sample targets">
+              <button type="button" data-sample="maya.patel@example.com">Maya</button>
+              <button type="button" data-sample="Jordan Lee">Jordan</button>
+              <button type="button" data-sample="sam.rivera@northstar.example">Sam</button>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Hardening Simulator</p>
+                <h2>Before vs after</h2>
+              </div>
+              <button id="resetHardening" class="icon-button" type="button" aria-label="Reset hardening">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 5a7 7 0 1 1-6.2 3.8H3.4A9 9 0 1 0 12 3v2Zm-1 5H5V4h2v2.2A8.9 8.9 0 0 1 12 3v2a7 7 0 0 0-5 2.1H11v2.9Z"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="toggle-stack">
+              <label class="toggle">
+                <input type="checkbox" data-hardening="passwordManager">
+                <span>Password manager enforced</span>
+              </label>
+              <label class="toggle">
+                <input type="checkbox" data-hardening="mfaEnabled">
+                <span>Phishing-resistant MFA</span>
+              </label>
+              <label class="toggle">
+                <input type="checkbox" data-hardening="privacyLockdown">
+                <span>Public data reduction</span>
+              </label>
+              <label class="toggle">
+                <input type="checkbox" data-hardening="breachMonitoring">
+                <span>Breach monitoring alerts</span>
+              </label>
+              <label class="toggle">
+                <input type="checkbox" data-hardening="simSwapLock">
+                <span>Carrier port freeze</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="panel safety-note">
+            <p class="section-kicker">Safety</p>
+            <p>GhostTrace uses local mock data only. It does not test credentials, access real dark-web sources, or probe live accounts.</p>
+          </div>
+        </aside>
+
+        <section class="dashboard" aria-live="polite">
+          <div class="hero-grid">
+            <section class="panel score-panel">
+              <div>
+                <p class="section-kicker">Compromise Risk</p>
+                <h2 id="targetName">Maya Patel</h2>
+                <p id="targetMeta" class="muted">maya.patel@example.com</p>
+              </div>
+              <div class="score-ring" id="scoreRing" aria-label="Risk score">
+                <span id="scoreValue">--</span>
+                <small id="scoreBand">Scanning</small>
+              </div>
+            </section>
+
+            <section class="panel impact-panel">
+              <p class="section-kicker">Business Impact</p>
+              <div class="impact-number" id="impactNumber">$--</div>
+              <p id="impactRange" class="muted">Estimated exposure range</p>
+              <div class="mini-bars" id="categoryBars"></div>
+            </section>
+          </div>
+
+          <section class="panel graph-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Attack Chain Graph</p>
+                <h2>Exposure network</h2>
+              </div>
+              <div class="legend">
+                <span><i class="legend-breach"></i>Breach</span>
+                <span><i class="legend-social"></i>Social</span>
+                <span><i class="legend-path"></i>Path</span>
+              </div>
+            </div>
+            <canvas id="attackGraph" width="900" height="420"></canvas>
+          </section>
+
+          <section class="content-grid">
+            <div class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="section-kicker">Exposure Scanner</p>
+                  <h2>Found signals</h2>
+                </div>
+                <span id="scanMode" class="chip">simulated-osint</span>
+              </div>
+              <div id="exposureList" class="exposure-list"></div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="section-kicker">Attack Path Generator</p>
+                  <h2>Most likely chains</h2>
+                </div>
+                <span id="pathCount" class="chip">0 paths</span>
+              </div>
+              <div id="attackPaths" class="path-list"></div>
+            </div>
+          </section>
+
+          <section class="content-grid report-grid">
+            <div class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="section-kicker">Ranked Fixes</p>
+                  <h2>Impact-first remediation</h2>
+                </div>
+                <span id="riskDrop" class="chip">0 pt drop</span>
+              </div>
+              <div id="recommendations" class="recommendations"></div>
+            </div>
+
+            <div class="panel executive-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="section-kicker">Executive Report</p>
+                  <h2>Board-ready brief</h2>
+                </div>
+                <div class="button-row">
+                  <button id="copyReport" type="button" class="icon-text-button">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M16 1H4a2 2 0 0 0-2 2v12h2V3h12V1Zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H8V7h11v14Z"></path>
+                    </svg>
+                    Copy
+                  </button>
+                  <button id="exportJson" type="button" class="icon-text-button">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M5 20h14v-2H5v2ZM13 4h-2v8.2L7.8 9 6.4 10.4 12 16l5.6-5.6L16.2 9 13 12.2V4Z"></path>
+                    </svg>
+                    JSON
+                  </button>
+                </div>
+              </div>
+              <article id="executiveReport" class="report-body"></article>
+            </div>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
+

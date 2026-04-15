@@ -1,0 +1,257 @@
+{
+  "breaches": [
+    {
+      "id": "atlas-crm",
+      "name": "AtlasCRM 2021",
+      "severity": "high",
+      "confidence": 0.88,
+      "records": 12800000,
+      "description": "Email, hashed password, phone, company, and job title exposed in a mock SaaS breach."
+    },
+    {
+      "id": "shopline",
+      "name": "ShopLine Rewards 2020",
+      "severity": "medium",
+      "confidence": 0.78,
+      "records": 7200000,
+      "description": "Email, name, shipping city, and loyalty metadata appeared in a simulated retail leak."
+    },
+    {
+      "id": "hirestack",
+      "name": "HireStack Careers 2019",
+      "severity": "high",
+      "confidence": 0.84,
+      "records": 4600000,
+      "description": "Resume metadata, phone, email, and employer history surfaced in a mock recruiting dataset."
+    },
+    {
+      "id": "pulsefit",
+      "name": "PulseFit Community 2022",
+      "severity": "medium",
+      "confidence": 0.73,
+      "records": 3100000,
+      "description": "Username, email, location, and wellness interests were included in a simulated forum dump."
+    },
+    {
+      "id": "cloudnote",
+      "name": "CloudNote Sync 2018",
+      "severity": "critical",
+      "confidence": 0.91,
+      "records": 18500000,
+      "description": "Email and password hashes were included in a mock credential corpus."
+    },
+    {
+      "id": "eventpilot",
+      "name": "EventPilot Attendee List 2023",
+      "severity": "medium",
+      "confidence": 0.76,
+      "records": 980000,
+      "description": "Conference attendance and employer metadata appeared in a simulated marketing export."
+    },
+    {
+      "id": "finforum",
+      "name": "FinForum Archive 2020",
+      "severity": "high",
+      "confidence": 0.81,
+      "records": 2200000,
+      "description": "Finance-related forum usernames, emails, and password hashes were exposed in mock data."
+    }
+  ],
+  "social_accounts": [
+    {
+      "id": "linkedin",
+      "platform": "LinkedIn",
+      "handlePattern": "first-last",
+      "severity": "high",
+      "confidence": 0.86,
+      "description": "Role, company, seniority, coworkers, and recent activity are available for pretext building."
+    },
+    {
+      "id": "instagram",
+      "platform": "Instagram",
+      "handlePattern": "first.last",
+      "severity": "medium",
+      "confidence": 0.72,
+      "description": "Travel, hobbies, friends, and recurring locations can support targeted phishing."
+    },
+    {
+      "id": "github",
+      "platform": "GitHub",
+      "handlePattern": "firstlast",
+      "severity": "medium",
+      "confidence": 0.67,
+      "description": "Public commits can reveal tooling, employer context, and old email aliases."
+    },
+    {
+      "id": "x",
+      "platform": "X / Twitter",
+      "handlePattern": "first_last",
+      "severity": "medium",
+      "confidence": 0.7,
+      "description": "Posting cadence and interests create a believable message style for social engineering."
+    },
+    {
+      "id": "facebook",
+      "platform": "Facebook",
+      "handlePattern": "first.last",
+      "severity": "high",
+      "confidence": 0.77,
+      "description": "Family, school, location, and life-event data can overlap with recovery questions."
+    }
+  ],
+  "dark_web_listings": [
+    {
+      "id": "combo-cloud",
+      "market": "ComboCloud credential bundle",
+      "severity": "critical",
+      "confidence": 0.74,
+      "price": "$18",
+      "description": "Mock listing claims email/password pairs grouped by cloud provider."
+    },
+    {
+      "id": "otp-bypass",
+      "market": "OTP relay service mention",
+      "severity": "high",
+      "confidence": 0.61,
+      "price": "$40 per attempt",
+      "description": "Simulated chatter about relay kits used against SMS or push-based recovery."
+    },
+    {
+      "id": "identity-pack",
+      "market": "Identity pack sampler",
+      "severity": "high",
+      "confidence": 0.68,
+      "price": "$24",
+      "description": "Mock bundle combines name, email, address hints, phone, and employer."
+    },
+    {
+      "id": "session-market",
+      "market": "Session token resale board",
+      "severity": "critical",
+      "confidence": 0.57,
+      "price": "$90",
+      "description": "Simulated listing category for stolen browser sessions and account cookies."
+    }
+  ],
+  "public_records": [
+    {
+      "id": "people-search",
+      "label": "People-search profile",
+      "severity": "medium",
+      "confidence": 0.81,
+      "description": "Address history and relatives can help bypass weak identity verification."
+    },
+    {
+      "id": "conference-bio",
+      "label": "Conference speaker bio",
+      "severity": "low",
+      "confidence": 0.72,
+      "description": "Public role details provide high-quality phishing context."
+    },
+    {
+      "id": "domain-whois",
+      "label": "Domain registration trace",
+      "severity": "medium",
+      "confidence": 0.65,
+      "description": "Older registrations may connect personal email to business infrastructure."
+    },
+    {
+      "id": "data-broker",
+      "label": "Data broker enrichment profile",
+      "severity": "high",
+      "confidence": 0.74,
+      "description": "Aggregated household, employer, phone, and interest segments raise impersonation risk."
+    },
+    {
+      "id": "alumni-record",
+      "label": "Alumni directory entry",
+      "severity": "low",
+      "confidence": 0.69,
+      "description": "School affiliation can become a credible phishing hook."
+    }
+  ],
+  "recovery_surfaces": [
+    {
+      "label": "SMS recovery enabled",
+      "severity": "high",
+      "confidence": 0.73,
+      "description": "SMS recovery gives attackers a carrier or helpdesk target.",
+      "weight": 0.82
+    },
+    {
+      "label": "Backup email likely reused",
+      "severity": "medium",
+      "confidence": 0.69,
+      "description": "A recycled backup email can become the weakest recovery link.",
+      "weight": 0.63
+    },
+    {
+      "label": "Security questions inferable",
+      "severity": "high",
+      "confidence": 0.71,
+      "description": "Public personal details may answer weak account recovery prompts.",
+      "weight": 0.78
+    },
+    {
+      "label": "Hardware MFA present",
+      "severity": "low",
+      "confidence": 0.62,
+      "description": "Hardware-backed MFA sharply reduces credential-only compromise paths.",
+      "weight": 0.34
+    }
+  ],
+  "bonus_attack_paths": [
+    {
+      "id": "vendor-fraud",
+      "title": "Vendor invoice redirection",
+      "likelihood": 67,
+      "impact": "Business email compromise and payment diversion",
+      "steps": [
+        "Identify vendors or finance contacts from public posts and inbox context",
+        "Send a believable invoice update from a lookalike domain",
+        "Use urgency and role context to bypass normal review",
+        "Redirect payment before reconciliation catches the issue"
+      ],
+      "evidence": [
+        "Finance or operations context",
+        "Public company/vendor references"
+      ],
+      "fix": "Add callback verification, vendor-change approvals, and payment anomaly alerts."
+    },
+    {
+      "id": "recruiter-lure",
+      "title": "Recruiter lure with malicious document",
+      "likelihood": 61,
+      "impact": "Malware delivery or credential capture through a career pretext",
+      "steps": [
+        "Use employment history to craft a realistic recruiter message",
+        "Send a role description or compensation file",
+        "Route the target to a fake SSO or document portal",
+        "Use the captured credentials for account pivoting"
+      ],
+      "evidence": [
+        "Career dataset exposure",
+        "Public professional profile"
+      ],
+      "fix": "Train high-risk staff on recruiter lures and isolate document preview workflows."
+    },
+    {
+      "id": "helpdesk-reset",
+      "title": "Helpdesk reset impersonation",
+      "likelihood": 64,
+      "impact": "Unauthorized password reset through social engineering",
+      "steps": [
+        "Collect employer, title, phone, and location hints",
+        "Call helpdesk with a time-sensitive access story",
+        "Answer lightweight verification using public data",
+        "Reset the account and enroll attacker-controlled MFA"
+      ],
+      "evidence": [
+        "Employer and phone correlation",
+        "Data broker profile"
+      ],
+      "fix": "Require stronger helpdesk verification and alert on MFA re-enrollment."
+    }
+  ]
+}
+
